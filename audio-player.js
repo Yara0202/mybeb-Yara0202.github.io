@@ -1,8 +1,8 @@
 let audio;
 
-document.getElementById('playAudioButton').addEventListener('click', () => {
+document.getElementById('startButton').addEventListener('click', () => {
     if (!audio) {
-        audio = new Audio('./assets/sempurna.mp3');
+        audio = new Audio('./sempurna.mp3');
         audio.loop = true;
 
         // Ambil waktu terakhir dari sessionStorage
@@ -16,7 +16,7 @@ document.getElementById('playAudioButton').addEventListener('click', () => {
     });
 
     // Sembunyikan tombol setelah audio diputar
-    document.getElementById('playAudioButton').style.display = 'none';
+    document.getElementById('startButton').style.display = 'none';
 });
 
 // Simpan waktu audio saat halaman ditutup
