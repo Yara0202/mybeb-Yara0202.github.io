@@ -73,18 +73,17 @@
     }
 
     @media (max-width: 768px) {
-    button {
-        font-size: 16px;
-        padding: 8px 12px;
+      button {
+          font-size: 16px;
+          padding: 8px 12px;
+      }
+      .message {
+          font-size: 20px;
+      }
+      .welcome-screen h1 {
+          font-size: 24px;
+      }
     }
-    .message {
-        font-size: 20px;
-    }
-    .welcome-screen h1 {
-        font-size: 24px;
-    }
-}
-
 
     .falling-heart {
       position: absolute;
@@ -133,7 +132,7 @@
 <body>
 
     <!-- Audio Player -->
-    <audio id="audioPlayer" autoplay>
+    <audio id="audioPlayer" preload="auto">
         <source src="sempurna.mp3" type="audio/mp3">
     </audio>
   <div class="welcome-screen">
@@ -171,6 +170,7 @@
     const prevButton = document.getElementById('prevButton');
     const nextButton = document.getElementById('nextButton');
     const page3 = document.getElementById('page3');
+    const audio = document.getElementById('audioPlayer');
 
     const messages = [
       "Sayang, makasih banget udah selalu ada buat aku. Kamu tuh baik banget, perhatian, dan setiap kali kamu deket, aku ngerasa tenang dan nyaman. Kehadiranmu tuh bikin aku semangat tiap hari, dan aku nggak pernah ngerasa sendirian karena ada kamu. Senyuman kamu itu yang bikin hari-hariku cerah, dan dukungan kamu itu lebih dari cukup buat aku. Aku janji bakal selalu ada buat kamu, sayang, dan nggak bakal berhenti bikin kamu bahagia. 💖",
@@ -185,6 +185,7 @@
     startButton.addEventListener('click', () => {
       welcomeScreen.style.display = 'none';
       mainScreen.style.display = 'block';
+      audio.play();  // Memulai audio setelah tombol diklik
     });
 
     function showMessage(index) {
@@ -208,28 +209,22 @@
       }
     });
 
-</script>
+    // Menyimpan posisi audio
+    window.onload = function() {
+        const lastTime = localStorage.getItem('audioTime');
+        if (lastTime) {
+            audio.currentTime = lastTime;
+        }
+    };
 
-<script>
+    audio.ontimeupdate = function() {
+        localStorage.setItem('audioTime', audio.currentTime);
+    };
 
-        const audio = document.getElementById('audioPlayer');
-
-        window.onload = function() {
-            const lastTime = localStorage.getItem('audioTime');
-            if (lastTime) {
-                audio.currentTime = lastTime;
-            }
-        };
-
-        audio.ontimeupdate = function() {
-            localStorage.setItem('audioTime', audio.currentTime);
-        };
-
-        audio.onended = function() {
-            audio.play();
-        };
-    </script>
-
+    audio.onended = function() {
+        audio.play();
+    };
+  </script>
 
 </body>
 </html>
