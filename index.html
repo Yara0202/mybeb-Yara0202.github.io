@@ -203,5 +203,14 @@
       }
     });
   </script>
+    <script type="module">
+      import { playAudio, saveAudioPosition } from './audio-player.js';
+
+      // Mulai audio saat halaman dimuat
+      window.addEventListener('load', playAudio);
+
+      // Simpan posisi audio sebelum halaman ditutup
+      window.addEventListener('beforeunload', saveAudioPosition);
+  </script>
 </body>
 </html>
