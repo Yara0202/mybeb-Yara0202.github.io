@@ -491,7 +491,16 @@
   <div class="falling-heart emoji3">😘</div>
   <div class="falling-heart emoji4">💌</div>
   <div class="falling-heart emoji5">❤️</div>
-  
+
+  <script type="module">
+      import { playAudio, saveAudioPosition } from './audio-player.js';
+
+      // Mulai audio saat halaman dimuat
+      window.addEventListener('load', playAudio);
+
+      // Simpan posisi audio sebelum halaman ditutup
+      window.addEventListener('beforeunload', saveAudioPosition);
+  </script>
 
 </body>
 </html>
