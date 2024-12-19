@@ -202,12 +202,11 @@
         showMessage(currentMessageIndex);
       }
     });
-  <script type="module">
-    import { playAudio, saveAudioPosition } from './audio-player.js';
+<script type="module">
+  import { playAudio, saveAudioPosition } from './assets/audio-player.js';
 
-    window.addEventListener('load', playAudio);
-
-    window.addEventListener('beforeunload', saveAudioPosition);
-  </script>
+  window.addEventListener('load', playAudio);
+  window.addEventListener('beforeunload', saveAudioPosition);
+</script>
 </body>
 </html>
