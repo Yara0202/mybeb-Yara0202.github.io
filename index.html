@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pesan buat ayang rere</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: linear-gradient(to bottom, #ffdde1, #ee9ca7);
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .message-container {
+      position: absolute;
+      top: 30%;
+      text-align: center;
+      width: 80%;
+      z-index: 10;
+    }
+
+    .message {
+      font-size: 24px;
+      color: white;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      margin: 20px 0;
+    }
+
+    .navigation-buttons {
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background: #ff6b81;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #ff4757;
+    }
+
+    .welcome-screen {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      z-index: 10;
+    }
+
+    .welcome-screen h1 {
+      font-size: 36px;
+      color: white;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 768px) {
+    button {
+        font-size: 16px;
+        padding: 8px 12px;
+    }
+    .message {
+        font-size: 20px;
+    }
+    .welcome-screen h1 {
+        font-size: 24px;
+    }
+}
+
+
+    .falling-heart {
+      position: absolute;
+      font-size: 30px;
+      animation: fallEmoji 3s linear infinite;
+      z-index: 1;
+    }
+
+    @keyframes fallEmoji {
+      0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    .emoji1 {
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .emoji2 {
+      left: 30%;
+      animation-delay: 1s;
+    }
+
+    .emoji3 {
+      left: 50%;
+      animation-delay: 2s;
+    }
+
+    .emoji4 {
+      left: 70%;
+      animation-delay: 3s;
+    }
+
+    .emoji5 {
+      left: 90%;
+      animation-delay: 4s;
+    }
+  </style>
+</head>
+<body>
+  <div class="welcome-screen">
+    <h1>Sayang, aku punya pesan untuk kamu 💖</h1>
+    <button id="startButton">Klik untuk Membaca Pesan</button>
+  </div>
+
+  <div class="falling-heart emoji1">💖</div>
+  <div class="falling-heart emoji2">😍</div>
+  <div class="falling-heart emoji3">😘</div>
+  <div class="falling-heart emoji4">💌</div>
+  <div class="falling-heart emoji5">❤️</div>
+
+  <div class="message-container" style="display: none;">
+    <h1>Hai Sayangku ❤️</h1>
+    <p class="message" id="currentMessage">
+        "Sayang, terima kasih banget udah selalu ada buat aku. Kamu baik banget, perhatian, dan selalu bikin aku ngerasa nyaman. Kehadiranmu tuh bikin hari-hariku lebih semangat. Setiap dukungan dan senyuman kamu tuh berarti banget buat aku. Aku janji bakal selalu ada buat kamu dan bikin kamu bahagia. 💖"
+    </p>
+    <div class="navigation-buttons">
+      <button id="prevButton">Back</button>
+      <button id="nextButton">Next</button>
+    </div>
+  </div>
+
+  <div class="message-container" id="page3" style="display: none;">
+    <h1>Ini hadiah buat kamu sayang hehe 💝</h1>
+    <a href="hadiah.html"><button>Ambil Hadiahmu</button></a>
+  </div>
+
+  <script>
+    const startButton = document.getElementById('startButton');
+    const welcomeScreen = document.querySelector('.welcome-screen');
+    const mainScreen = document.querySelector('.message-container');
+    const currentMessageElement = document.getElementById('currentMessage');
+    const prevButton = document.getElementById('prevButton');
+    const nextButton = document.getElementById('nextButton');
+    const page3 = document.getElementById('page3');
+
+    const messages = [
+      "Sayang, makasih banget udah selalu ada buat aku. Kamu tuh baik banget, perhatian, dan setiap kali kamu deket, aku ngerasa tenang dan nyaman. Kehadiranmu tuh bikin aku semangat tiap hari, dan aku nggak pernah ngerasa sendirian karena ada kamu. Senyuman kamu itu yang bikin hari-hariku cerah, dan dukungan kamu itu lebih dari cukup buat aku. Aku janji bakal selalu ada buat kamu, sayang, dan nggak bakal berhenti bikin kamu bahagia. 💖",
+      "Aku tau kadang kamu capek, kerja keras terus, tapi aku yakin kamu bisa lewatin semuanya. Jangan lupa istirahat ya, kalau udah mulai ngerasa berat. Aku bakal selalu ada di sini, jadi kalo ada yang pengen kamu ceritain atau sekedar ngobrol, aku siap dengerin. Aku percaya sama kamu, sayang, dan aku bangga banget sama segala usaha yang kamu lakukan.",
+      "Aku cuma pengen kamu bahagia, karena kamu tuh buat aku segalanya. Kalau kamu lagi capek atau ada yang bikin kamu sedih, aku mau jadi orang pertama yang bisa ngedukung dan bantu kamu. Aku nggak sempurna, tapi aku bakal terus berusaha jadi yang terbaik buat kamu. Yang penting, kamu tau kalau kamu selalu punya aku di sisi kamu.",
+      "Maaf ya sayang, aku jauh banget dan nggak bisa nemenin kamu langsung. Semoga kita bisa segera dipertemukan, dan aku bisa selalu ada di dekat kamu. Walaupun sekarang jarak memisahkan, aku selalu siap dengerin kapan pun kamu butuh, jadi jangan ragu buat cerita ke aku. Kamu nggak pernah sendiri.",
+      "Aku punya hadiah buat kamu di halaman selanjutnya, semoga bisa jadi semangat buat kamu jalani aktivitas dan selalu diberikan kesehatan, ya. 💖Aku punya hadiah buat kamu di halaman selanjutnya ya, walaupun hanya hal kecil, semoga bisa jadi semangat buat kamu jalani aktivitas dan selalu diberikan kesehatan, ya. 💖"
+    ];
+
+    let currentMessageIndex = 0;
+
+    startButton.addEventListener('click', () => {
+      welcomeScreen.style.display = 'none';
+      mainScreen.style.display = 'block';
+    });
+
+    function showMessage(index) {
+      currentMessageElement.textContent = messages[index];
+    }
+
+    nextButton.addEventListener('click', () => {
+      if (currentMessageIndex < messages.length - 1) {
+        currentMessageIndex++;
+        showMessage(currentMessageIndex);
+      } else {
+        mainScreen.style.display = 'none';
+        page3.style.display = 'block';
+      }
+    });
+
+    prevButton.addEventListener('click', () => {
+      if (currentMessageIndex > 0) {
+        currentMessageIndex--;
+        showMessage(currentMessageIndex);
+      }
+    });
+  </script>
+</body>
+</html>
