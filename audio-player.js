@@ -3,7 +3,7 @@ let audio;
 // Fungsi untuk memutar audio
 export function playAudio() {
   if (!audio) {
-    audio = new Audio('./assets/sempurna.mp3');
+    audio = new Audio('./sempurna.mp3');
     audio.loop = true;
 
     const savedTime = sessionStorage.getItem('audioTime');
