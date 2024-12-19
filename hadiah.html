@@ -492,15 +492,30 @@
   <div class="falling-heart emoji4">💌</div>
   <div class="falling-heart emoji5">❤️</div>
 
-  <script type="module">
-      import { playAudio, saveAudioPosition } from './audio-player.js';
+    <!-- Audio Player -->
+    <audio id="audioPlayer" autoplay>
+        <source src="sempurna.mp3" type="audio/mp3">
+    </audio>
 
-      // Mulai audio saat halaman dimuat
-      window.addEventListener('load', playAudio);
+    <script>
+        const audio = document.getElementById('audioPlayer');
 
-      // Simpan posisi audio sebelum halaman ditutup
-      window.addEventListener('beforeunload', saveAudioPosition);
-  </script>
+        window.onload = function() {
+            const lastTime = localStorage.getItem('audioTime');
+            if (lastTime) {
+                audio.currentTime = lastTime;
+            }
+        };
+
+        audio.ontimeupdate = function() {
+            localStorage.setItem('audioTime', audio.currentTime);
+        };
+
+        audio.onended = function() {
+            audio.play();
+        };
+    </script>
+
 
 </body>
 </html>

@@ -131,6 +131,11 @@
   </style>
 </head>
 <body>
+
+    <!-- Audio Player -->
+    <audio id="audioPlayer" autoplay>
+        <source src="sempurna.mp3" type="audio/mp3">
+    </audio>
   <div class="welcome-screen">
     <h1>Sayang, aku punya pesan untuk kamu 💖</h1>
     <button id="startButton">Klik untuk Membaca Pesan</button>
@@ -202,11 +207,29 @@
         showMessage(currentMessageIndex);
       }
     });
-<script type="module">
-  import { playAudio, saveAudioPosition } from './audio-player.js';
 
-  window.addEventListener('load', playAudio);
-  window.addEventListener('beforeunload', saveAudioPosition);
 </script>
+
+<script>
+
+        const audio = document.getElementById('audioPlayer');
+
+        window.onload = function() {
+            const lastTime = localStorage.getItem('audioTime');
+            if (lastTime) {
+                audio.currentTime = lastTime;
+            }
+        };
+
+        audio.ontimeupdate = function() {
+            localStorage.setItem('audioTime', audio.currentTime);
+        };
+
+        audio.onended = function() {
+            audio.play();
+        };
+    </script>
+
+
 </body>
 </html>
